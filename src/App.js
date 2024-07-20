@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import PropTypes from "prop-types";
+import Footer from './components/Footer';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,8 +16,8 @@ export default class App extends Component {
     <>
       <Router>
          <Navbar/>
-        <div className='container my-4'>
-            <h1 className='text-center' style={{margin:"23px 0"}}>Hey, it's just baked for u!!</h1>
+        <div className='container my-4 '>
+            <h1 className='text-center' style={{margin:"23px 0", marginTop:"70px"}}>Hey, it's just baked for u!!</h1>
                   <Switch>
                     <Route exact path="/">
                       <News key="general" country ={"in"} category={"general"}/>
@@ -41,20 +42,19 @@ export default class App extends Component {
                     </Route>
                   </Switch>
          </div> 
-         
       </Router>
-          
+          <Footer/>
     </>
     )
   }
 }
 
-News .defaultProps ={  //this must be included only in App.js
+News.defaultProps ={  //this must be included only in App.js
   country : "in", 
   category : "general"
 }
 
-News .PropTypes = {
+News.PropTypes = {
   country : PropTypes.string,
   category : PropTypes.string
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class ArrowUp extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       visible: false,
     };

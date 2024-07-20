@@ -14,7 +14,7 @@ export class News extends Component {
             loading:true
         };
     }
-    
+    // https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=1&pageSize=8
     async componentDidMount() {
         let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=${this.state.page}&pageSize=8`);
         let pdata = await data.json();
@@ -103,11 +103,8 @@ export class News extends Component {
                     <button type='button' className='btn btn-dark' disabled={this.state.page <= 1} onClick={this.handlePrevBtn}>&larr; Previous</button>
                     <button type='button' className='btn btn-dark' disabled={this.state.page  >= Math.ceil(totalResults / 8)} onClick={this.handleNextBtn}>Next &rarr;</button>
                 </div>
-
                 </>
         );   
     }
 }
-
-
 export default News;

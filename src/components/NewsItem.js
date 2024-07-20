@@ -13,7 +13,7 @@ export class NewsItem extends Component {
                         {publish}</span></h5>
                         <p className="card-title">{timeat}</p>
                         <p className="card-title">{publishedAt}</p>
-                        <p className="card-text">{description}...<strong>Click below </strong></p>
+                        <p className="card-text">{description}...<strong>Click below</strong></p>
                         <a href={url} className="btn btn-sm btn-primary" target="_blank" rel='noreferrer'>Read More</a>
                     </div>
                 </div>
