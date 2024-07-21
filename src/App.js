@@ -17,7 +17,7 @@ export default class App extends Component {
       <Router>
          <Navbar/>
         <div className='container my-4 '>
-            <h1 className='text-center' style={{margin:"23px 0", marginTop:"70px"}}>Hey, it's just baked for u!!</h1>
+            {/* <h1 className='text-center' style={{margin:"23px 0", marginTop:"70px"}}>Hey, it's just baked for u!!</h1> */}
                   <Switch>
                     <Route exact path="/">
                       <News key="general" country ={"in"} category={"general"}/>

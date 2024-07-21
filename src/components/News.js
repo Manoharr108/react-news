@@ -5,14 +5,18 @@ import Loader from "../components/Loader"
 import Navigation from './Navigation';
 
 export class News extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             articles:[],
             page:1,
             totalResults:0, 
             loading:true
         };
+        document.title = `React-News--${this.catpitalize(this.props.category)}`
+    }
+    catpitalize = (str)=>{
+       return  str[0].toUpperCase() + str.slice(1)
     }
     // https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=1&pageSize=8
     async componentDidMount() {
@@ -77,8 +81,11 @@ export class News extends Component {
         const { totalResults } = this.state;
         return (
             <>
+            <div className="container text-center" > 
+                <h1 style={{marginTop:"80px", marginBottom:"25px"}}>{`Hey, just baked ${this.catpitalize(this.props.category)} News for u!!`}</h1>
+            </div>
             <div className="text-center">{this.state.loading && <Loader/>}</div>
-            <div style={{
+            <div style={{ 
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "space-between",
