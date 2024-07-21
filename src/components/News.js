@@ -24,7 +24,7 @@ export class News extends Component {
         let pdata = await data.json();
         this.setState({ articles: pdata.articles, totalResults:pdata.articles, loading:false });
     }
-    
+  
     handlePrevBtn = async()=>{
         this.setState({loading:true})
         const {page} = this.state;
