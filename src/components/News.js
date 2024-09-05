@@ -11,7 +11,8 @@ export class News extends Component {
             articles:[],
             page:1,
             totalResults:0, 
-            loading:true
+            loading:true,
+            theme:this.props.theme
         };
         document.title = `React-News--${this.catpitalize(this.props.category)}`
     }
@@ -20,7 +21,8 @@ export class News extends Component {
     }
     // https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=1&pageSize=8
     async componentDidMount() {
-        let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=${this.state.page}&pageSize=8`);
+        // let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=${this.state.page}&pageSize=8`);
+        let data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&pagesize=8`);
         let pdata = await data.json();
         this.setState({ articles: pdata.articles, totalResults:pdata.articles, loading:false });
     }
@@ -47,49 +49,25 @@ export class News extends Component {
         document.documentElement.scrollTop = 0;
     }
 
-    // handlePrevBtn = async () => {
-    //     const { page } = this.state;
-    //     const newPage = page - 1;
-    
-    //     if (newPage > 0) {
-    //         let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=${newPage}&pageSize=12`);
-    //         let pdata = await data.json();
-    //         this.setState({
-    //             articles: pdata.articles,
-    //             page: newPage
-    //         });
-    //         document.documentElement.scrollTop = 0;
-    //     }
-    // }
-    
-    // handleNextBtn = async () => {
-    //     const { page } = this.state;
-    //     const newPage = page + 1;
-    
-    //     let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bb09c5c3d2b04d8681b42856b6866fe8&page=${newPage}&pageSize=12`);
-    //     let pdata = await data.json();
-    //     this.setState({
-    //         articles: pdata.articles,
-    //         page: newPage
-    //     });
-    //     document.documentElement.scrollTop = 0;
-    // }
-    
-
-
     render() {
-        const { totalResults } = this.state;
+        const { totalResults, theme} = this.state;
+        let colour;
+        if(theme==="dark"){
+            colour = "white"
+        }
+        else{
+            colour = "black"
+        }
         return (
             <>
             <div className="container text-center" > 
-                <h1 style={{marginTop:"80px", marginBottom:"25px"}}>{`Hey, just baked ${this.catpitalize(this.props.category)} News for u!!`}</h1>
+                <h1 style={{marginTop:"55px", marginBottom:"25px", color:colour}}>{`Hey, just baked ${this.catpitalize(this.props.category)} News for u!!`}</h1>
             </div>
             <div className="text-center">{this.state.loading && <Loader/>}</div>
             <div style={{ 
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "space-between",
-                // margin: "35px 0"
+                justifyContent: "space-between"
             }}>
                 {!this.state.loading && this.state.articles.map((i) => (
                     <NewsItem

@@ -6,11 +6,27 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      theme : "light"
+    }
+
+  }
+   toggleStyle =()=>{
+    if(this.state.theme === "light"){
+      this.setState({theme : "dark"})
+    }
+    else{
+      this.setState({theme : "light"})
+    }
+  }       
   render() {
     return (
-      <>
+     
+      <div className={`bg-${this.state.theme}`}>
         <Router>
-          <Navbar />
+          <Navbar func= {this.toggleStyle}/>
           <div className="container my-4 ">
             {/* <h1 className='text-center' style={{margin:"23px 0", marginTop:"70px"}}>Hey, it's just baked for u!!</h1> */}
             <Switch>
@@ -18,11 +34,7 @@ export default class App extends Component {
                 <News key="general"  category={"general"} />
               </Route>
               <Route exact path="/entertainment">
-                <News
-                  key="entertainment"
-                  
-                  category={"entertainment"}
-                />
+                <News key="entertainment" category={"entertainment"}/>
               </Route>
               <Route exact path="/business">
                 <News key="business"  category={"business"} />
@@ -43,7 +55,7 @@ export default class App extends Component {
           </div>
         </Router>
         <Footer />
-      </>
+      </div>
     );
   }
 }

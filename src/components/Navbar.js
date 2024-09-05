@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 export default class Navbar extends Component {
-  render() {
+  render(props) {
     return (
       <div>
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -38,6 +38,10 @@ export default class Navbar extends Component {
         </li>
       </ul>
     </div>
+    <div className="form-check form-switch">
+  <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onClick={this.props.func}/>
+  <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Dark Mode</label>
+</div>
   </div>
 </nav>
       </div>
